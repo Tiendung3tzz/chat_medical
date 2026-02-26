@@ -1,0 +1,111 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    flex: 1;         
+    overflow-y: auto; 
+}
+
+.user-message {
+    max-width: 70%;
+    background-color: #ffffff;
+    /* margin-left: auto; */
+    align-self: flex-end;
+    margin-right: 15px;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    padding: 0 10px 0 10px;
+    border: 1px solid #cccccc;
+    border-radius: 40px;
+}
+
+.bot-message {
+    max-width: 70%;
+    margin-left: 50px;
+    /* margin-right: 15px; */
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    padding: 0 10px 0 10px;
+    transition: margin 0.5s ease;
+
+}
+
+.content-container {
+  transition: margin-left .5s;
+}
+
+body.nav-expanded .content-container {
+  margin-left: var(--nav-message-trans);
+}
+
+/* body.nav-expanded .bot-message {
+  margin-left: var(--nav-message-trans);
+}
+
+body.nav-expanded .user-message {
+  margin-left: var(--nav-message-trans);
+} */
+
+
+.input-container {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-start;
+    width: 60%;
+    height: 50px;
+    align-self: center;
+    border-radius: 25px;
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: transform 0.5s ease;
+}
+
+.input-container .text-input {
+    width: 80%;
+    height: 30px;
+    line-height: 20px;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+    resize: none;        
+    overflow: auto; 
+    border: none;
+
+}
+
+.text-input:focus {
+  outline: none;
+}
+
+.input-container #enter {
+    display: none;
+    margin-left: auto;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.input-container .text-input:valid~#enter {
+    display: block;
+}
+
+.input-container .item-input {
+
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.text-input::-webkit-scrollbar {
+    display: none;           
+}
