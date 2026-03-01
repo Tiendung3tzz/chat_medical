@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const [disabledHover, setDisabledHover] =  useState(false);
 
   useEffect(() => {

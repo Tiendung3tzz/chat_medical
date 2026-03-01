@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pinecone
+onnxruntime-gpu
+numpy
+openai
+pyyaml
+pydantic_settings
+transformers

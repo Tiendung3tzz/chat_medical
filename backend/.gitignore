@@ -1,0 +1,12 @@
+# Python virtual environment
+.venv/
+
+# Data folder
+data/
+models/
+# Markdown files
+*.md
+
+
+
+.env
