@@ -1,9 +1,11 @@
 from pinecone import Pinecone, ServerlessSpec
+from typing import Dict, List, Optional
 
 class PineconeIndexManager:
-    def __init__(self, api_key, index_name, dimension=1024, metric="dotproduct"):
+    def __init__(self, api_key, index_name, environment: Optional[str] = None, dimension=1024, metric="dotproduct"):
         self.api_key = api_key
         self.index_name = index_name
+        self.environment = environment
         self.dimension = dimension
         self.metric = metric
 
@@ -18,7 +20,7 @@ class PineconeIndexManager:
                 metric=self.metric,
                 spec=ServerlessSpec(
                     cloud="aws",
-                    region="us-east-1"
+                    region=self.environment or "us-east-1"
                 )
             )
         self.index = self.pc.Index(self.index_name)

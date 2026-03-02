@@ -7,3 +7,4 @@ openai
 pyyaml
 pydantic_settings
 transformers
+pinecone_text

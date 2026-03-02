@@ -18,11 +18,14 @@ import pickle
 
 class BM25Encoder:
     def __init__(self, model_path: str | Path):
+        BASE_DIR = Path(__file__).resolve().parents[2]  # project/
         if model_path is None:
-            BASE_DIR = Path(__file__).resolve().parents[2]  # project/
-            model_path = BASE_DIR / "models" 
+            model_path = BASE_DIR/"backend"/"models"
+            model_file = Path(model_path) / "bge_m3.onnx"
+        else:
+            model_file = BASE_DIR / Path(model_path)
         
-        self.model_path = Path(model_path) / "bm25_encoder.pkl"
+        self.model_path = model_file
         self.model = self._load()
 
     def _load(self):
@@ -41,10 +44,12 @@ class ONNXEmbeddingModel:
             raise ImportError("onnxruntime and transformers are required for ONNXEmbedding")
 
         self.tokenizer = AutoTokenizer.from_pretrained("BAAI/bge-m3")
+        BASE_DIR = Path(__file__).resolve().parents[2]  # project/
         if model_path is None:
-            BASE_DIR = Path(__file__).resolve().parents[2]  # project/
-            model_path = BASE_DIR / "models" 
-        model_file = Path(model_path) / "bge_m3.onnx"
+            model_path = BASE_DIR/"backend"/"models"
+            model_file = Path(model_path) / "bge_m3.onnx"
+        else:
+            model_file = BASE_DIR / Path(model_path)
         
         if not os.path.exists(model_file):
             raise FileNotFoundError(f"bge_m3.onnx not found in {model_path}")

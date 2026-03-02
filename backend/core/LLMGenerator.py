@@ -36,9 +36,9 @@ class LLMGenerator:
 
         response = self.client.responses.create(
             model=self.model,
-            messages=messages,
+            input=messages,
             temperature=0.3,
-            max_tokens=1024,
+            max_output_tokens=1024,
         )
 
         return {
