@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: chat-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - hf_cache:/app/.cache/huggingface
+      - model_store:/app/backend/models
+      - nltk_cache:/app/.cache/nltk
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: chat-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+# 🔥 PHẢI CÓ
+volumes:
+  hf_cache:
+  model_store:
+  nltk_cache:

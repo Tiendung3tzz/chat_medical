@@ -1,23 +1,41 @@
+from huggingface_hub import hf_hub_download, snapshot_download
 import onnxruntime as ort
 from transformers import AutoTokenizer
 from pathlib import Path
 import os
 class ONNXReranker:
-    def __init__(self, model_path: str | None = None, top_k=5):
+    def __init__(
+            self,
+            model_path: str | None = None, 
+            repo_id: str = "tiendung3t/bge-m3-reranker",
+            filename: str = "bge_m3_rerank.onnx",
+            top_k=5
+        ):
         if AutoTokenizer is None or ort is None:
             raise ImportError("onnxruntime and transformers are required for ONNXEmbedding")
 
         self.tokenizer = AutoTokenizer.from_pretrained("BAAI/bge-reranker-v2-m3")
-        BASE_DIR = Path(__file__).resolve().parents[2]  # project/
         if model_path is None:
-            model_path = BASE_DIR/"backend"/"models"
-            model_file = Path(model_path) / "bge_m3_rerank.onnx"
+            self.model_path = Path("backend/models") / filename
         else:
-            model_file = BASE_DIR / Path(model_path)
-        
-        if not os.path.exists(model_file):
-            raise FileNotFoundError(f"bge_m3_rerank.onnx not found in {model_path}")
-        self.session = self._create_session(model_file)
+            self.model_path = Path(model_path)
+        model_dir = self.model_path.parent
+        if not self.model_path.exists():
+            model_dir.mkdir(parents=True, exist_ok=True)
+
+            snapshot_download(
+                repo_id=repo_id,
+                local_dir=model_dir,
+                local_dir_use_symlinks=False, 
+                allow_patterns=["*.onnx", "*.onnx.data"],
+            )
+
+        # Kiểm tra external data
+        data_file = self.model_path.with_suffix(".onnx.data")
+        if not data_file.exists():
+            raise RuntimeError(f"Missing ONNX external data file: {data_file}")
+
+        self.session = self._create_session(self.model_path)
         self.top_k = top_k
 
     def _create_session(self, model_path):

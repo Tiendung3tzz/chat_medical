@@ -1,8 +1,11 @@
 import yaml
+from pathlib import Path
 
 class PromptManager:
     def __init__(self, path):
-        self.prompts = self._load(path)
+        base_dir = Path(__file__).resolve().parent.parent
+        full_path = base_dir / path
+        self.prompts = self._load(full_path)
 
     def _load(self, path):
         with open(path, "r", encoding="utf-8") as f:

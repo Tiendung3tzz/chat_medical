@@ -21,9 +21,9 @@ class Settings(BaseSettings):
     PINECONE_INDEX_NAME: str = "youmedmedical"
 
     # Models
-    EMBEDDING_MODEL_PATH: str = "backend/models/bge_m3.onnx"
-    RERANKER_MODEL_PATH: str = "backend/models/bge_m3_rerank.onnx"
-    BM25_INDEX_PATH: str = "backend/models/bm25_encoder.pkl"
+    EMBEDDING_MODEL_PATH: Path  = BASE_DIR / "models" / "bge_m3.onnx"
+    RERANKER_MODEL_PATH: Path  = BASE_DIR / "models" / "bge_m3_rerank.onnx"
+    BM25_INDEX_PATH: Path  = BASE_DIR / "models" / "bm25_encoder.pkl"
     EMBEDDING_DIM: int = 1024
 
     # Retrieval

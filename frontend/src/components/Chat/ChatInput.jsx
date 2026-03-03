@@ -1,14 +1,16 @@
 import { useState } from "react";
 import "./Chat.css";
 
+import addIcon from "@/assets/add.png";
+import loginIcon from "@/assets/login.png";
+
 export default function ChatInput({ onSend }) {
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
     const trimmedMessage = message.trim();
-    if (trimmedMessage === "") return;
-
-    onSend(trimmedMessage); // gọi hàm CHA
+    if (!trimmedMessage) return;
+    onSend(trimmedMessage);
     setMessage("");
   };
 
@@ -21,7 +23,7 @@ export default function ChatInput({ onSend }) {
 
   return (
     <div className="input-container">
-      <img src="/src/assets/add.png" className="item-input" alt="add" />
+      <img src={addIcon} className="item-input" alt="add" />
 
       <textarea
         className="text-input"
@@ -32,7 +34,7 @@ export default function ChatInput({ onSend }) {
       />
 
       <img
-        src="/src/assets/login.png"
+        src={loginIcon}
         className="item-input"
         id="enter"
         alt="enter"

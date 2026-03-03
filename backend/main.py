@@ -10,12 +10,12 @@ from fastapi.middleware.cors import CORSMiddleware
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from backend.routes import chat
-from utils.config import settings
+from .utils.config import settings
 from backend.core.EmbeddingModel import ONNXEmbeddingModel, BM25Encoder
-from core.ONNXReranker import ONNXReranker
-from core.HybridRetriever import HybridRetriever
-from core.LLMGenerator import LLMGenerator
-from core.IndexManager import PineconeIndexManager
+from .core.ONNXReranker import ONNXReranker
+from .core.HybridRetriever import HybridRetriever
+from .core.LLMGenerator import LLMGenerator
+from .core.IndexManager import PineconeIndexManager
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

@@ -1,5 +1,5 @@
 from openai import OpenAI
-from core.PromptManager import PromptManager
+from ..core.PromptManager import PromptManager
 
 class LLMGenerator:
 

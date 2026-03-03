@@ -3,10 +3,10 @@ from fastapi import APIRouter, Depends
 
 from backend.dependencies import get_retriever, get_generator, get_reranker
 from backend.schemal.schemal import ChatRequest, ChatResponse
-from core.HybridRetriever import HybridRetriever
-from core.LLMGenerator import LLMGenerator
-from utils.config import settings
-from utils.logger import setup_logger
+from ..core.HybridRetriever import HybridRetriever
+from ..core.LLMGenerator import LLMGenerator
+from ..utils.config import settings
+from ..utils.logger import setup_logger
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 logger = setup_logger(__name__)
