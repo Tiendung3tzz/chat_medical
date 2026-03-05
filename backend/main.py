@@ -64,9 +64,14 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "chat-medical.vercel.app"],
+        "https://chat-medical.vercel.app",
+        "https://chathealth.site",
+        ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 app.include_router(chat.router)
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Medical RAG Chatbot API!"}

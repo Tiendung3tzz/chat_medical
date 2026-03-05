@@ -7,7 +7,7 @@ export default function Content() {
 
   const sendAnswerAPI = async (text) => {
     try {
-      const response = await fetch("https://54.252.187.59:80/chat/", {
+      const response = await fetch("http://ecs-alb-demo-1671232649.ap-southeast-2.elb.amazonaws.com/chat/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
