@@ -7,7 +7,7 @@ export default function Content() {
 
   const sendAnswerAPI = async (text) => {
     try {
-      const response = await fetch("http://ecs-alb-demo-1671232649.ap-southeast-2.elb.amazonaws.com/chat/", {
+      const response = await fetch("https://api.chathealth.site/chat/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
